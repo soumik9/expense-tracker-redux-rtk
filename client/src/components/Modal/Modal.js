@@ -40,11 +40,11 @@ const Modal = ({ isOpen, setIsOpen, children, modalTitle }) => {
                                 <div className='flex justify-between items-center relative -top-2'>
                                     <Dialog.Title
                                         as="h3"
-                                        className="text-lg font-medium leading-6 text-gray-900"
+                                        className="text-lg font-medium leading-6 text-gray-900 cursor-default"
                                     >
                                         {modalTitle}
                                     </Dialog.Title>
-                                    <GrClose className='hover:!text-red cursor-pointer' onClick={closeModal} />
+                                    <GrClose className='hover:text-[#e74c3c] cursor-pointer' onClick={closeModal} />
                                 </div>
 
 

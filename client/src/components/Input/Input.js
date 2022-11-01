@@ -13,7 +13,10 @@ const Input = ({ label, type, value, id, name, onChange, divCss, isRequired, }) 
                 value={value ? value : ''}
                 onChange={onChange}
                 isRequired={isRequired}
-                className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                className="border border-gray-300 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow-sm outline-none focus:shadow w-full ease-linear transition-all duration-150"
+                autoComplete='off'
+                autoFocus={false}
+                autoSave={false}
             />
         </div>
     );
