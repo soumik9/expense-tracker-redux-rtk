@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Input from '../../components/Input/Input';
 import Modal from '../../components/Modal/Modal';
 import Select from '../../components/Select/Select';
+import { roles } from '../../configs/constant';
 
-const roles = [
-    { name: 'Select', value: '' },
-    { name: 'Admin', value: 'admin' },
-    { name: 'Teacher', value: 'teacher' },
-    { name: 'Student', value: 'student' },
-  ]
 
 const AddUser = ({ isOpen, setIsOpen }) => {
 
-    const [selected, setSelected] = useState(roles[0])
+    // states
+    const [selected, setSelected] = useState(roles[0]);
+    const [data, setData] = useState({ name: '', email: '', password: '', confirmPassword: '', role: selected.value });
+
+    // setting role value to data
+    useEffect(() => {
+        setData({ ...data, role: selected.value });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selected])
 
     return (
         <Modal isOpen={isOpen} setIsOpen={setIsOpen} modalTitle={'Add User'} className=''>
@@ -23,31 +26,39 @@ const AddUser = ({ isOpen, setIsOpen }) => {
                     <Input
                         id={'name'}
                         label={'Name'}
+                        value={data?.name}
                         isRequired={true}
+                        onChange={(e) => setData({ ...data, name: e.target.value })}
                     />
 
                     <Input
                         id={'email'}
                         type={'email'}
                         label={'Email'}
+                        value={data?.email}
                         isRequired={true}
+                        onChange={(e) => setData({ ...data, email: e.target.value })}
                     />
 
                     <Input
                         id={'password'}
                         type={'password'}
                         label={'Password'}
+                        value={data?.password}
                         isRequired={true}
+                        onChange={(e) => setData({ ...data, password: e.target.value })}
                     />
 
                     <Input
                         id={'confirmPassword'}
                         type={'password'}
                         label={'Confrim Password'}
+                        value={data?.confirmPassword}
                         isRequired={true}
+                        onChange={(e) => setData({ ...data, confirmPassword: e.target.value })}
                     />
 
-                    <Select 
+                    <Select
                         label={'Role'}
                         datas={roles}
                         selected={selected}
