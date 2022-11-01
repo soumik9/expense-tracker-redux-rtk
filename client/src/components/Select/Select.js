@@ -7,7 +7,7 @@ const Select = ({ selected, setSelected, datas, label, divCss, id }) => {
 
     return (
         <div className={`relative w-full mb-3 ${divCss}`}>
-            <label className="block text-blueGray-600 text-sm font-bold mb-3" htmlfor={id}>
+            <label className="block text-blueGray-600 text-sm font-bold mb-3" htmlFor={id}>
                 {label}
             </label>
             <Listbox value={selected} onChange={setSelected}>
