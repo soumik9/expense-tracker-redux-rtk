@@ -4,6 +4,7 @@ import AddUser from './AddUser';
 
 const Users = () => {
 
+    // states
     const [isOpen, setIsOpen] = useState(false);
 
     return (
