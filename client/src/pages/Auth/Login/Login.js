@@ -1,4 +1,6 @@
 import React from 'react';
+import ClassroomImage from '../../../assets/images/classroom.png';
+import Button from '../../../components/Button/Button';
 
 const Login = () => {
     return (
@@ -8,11 +10,11 @@ const Login = () => {
                     <div className="bg-white shadow-lg rounded-lg text-gray-800 w-full p-10">
                         <div className="text-center">
                             <img
-                                className="mx-auto w-48"
-                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                                className="mx-auto w-[150px] h-[150px]"
+                                src={ClassroomImage}
                                 alt="logo"
                             />
-                            <h4 className="text-xl font-semibold mt-1 mb-12 pb-1">Online Classroom Management</h4>
+                            <h4 className="text-xl font-semibold mt-2 mb-12 pb-1">Online Classroom Management</h4>
                         </div>
 
                         <form>
@@ -33,15 +35,10 @@ const Login = () => {
                                 />
                             </div>
                             <div className="text-center pt-1 mb-12 pb-1">
-                                <button
-                                    className="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
-                                    type="button"
-                                    data-mdb-ripple="true"
-                                    data-mdb-ripple-color="light"
-                                    style={{ background: `linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593 )` }}
-                                >
-                                    Log in
-                                </button>
+                                <Button
+                                    text={'Login'}
+                                    alignment={'!py-[14px]'}
+                                />
                                 <a className="text-gray-500" href="#!">Forgot password?</a>
                             </div>
                             <div className="flex items-center justify-between pb-6">
