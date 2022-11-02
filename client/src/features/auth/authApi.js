@@ -1,5 +1,6 @@
 import { apiSlice } from "../api/apiSlice";
 import { toast } from 'react-toastify';
+import { userLoggedIn } from "./authSlice";
 
 export const authApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -26,10 +27,26 @@ export const authApi = apiSlice.injectEndpoints({
                 url: 'login',
                 method: 'POST',
                 body: data
-            })
+            }),
+            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                try {
+                    const result = await queryFulfilled;
+                    toast.success(result.data.message);
+
+                    // console.log('res', result.data.data.user);
+
+                    // setting logged data to redux state
+                    dispatch(userLoggedIn({
+                        accessToken: result.data.data.accessToken,
+                        user: result.data.data.user,
+                    }));
+                } catch (error) {
+                    toast.error(error?.error?.data.message);
+                }
+            }
         })
 
     })
 });
 
-export const { useLoginMutation, useSignupMutation } = authApi;
+export const { useSignupMutation, useLoginMutation } = authApi;

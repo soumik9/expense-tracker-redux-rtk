@@ -8,7 +8,7 @@ const Button = ({ text, loading, type, alignment, loadingText }) => {
             disabled={loading}
         >
             {loading ? <div className='flex items-center gap-2'>
-                <span class="loader"></span>
+                <span className="loader"></span>
                 <span className='text-white'>{loadingText}</span>
             </div> :
                 text}

@@ -39,7 +39,7 @@ const login = async (req, res) => {
     const token = generateToken(user);
 
     const { password: pwd, ...others } = user.toObject();
-    res.status(200).send({ data:{ user: others, token }, message: 'Successfully logged!', success: true });
+    res.status(200).send({ data:{ user: others, accessToken: token }, message: 'Successfully logged!', success: true });
   } catch (error) {
     res.status(500).send({ error: error.message, message: 'Server side error', success: false });
   }

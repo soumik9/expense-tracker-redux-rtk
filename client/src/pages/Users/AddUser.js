@@ -38,7 +38,7 @@ const AddUser = ({ isOpen, setIsOpen }) => {
         // if(data.password !== data.confirmPassword) return toast.error('Password not matched');
 
         // redux reducer
-        register(data, setIsOpen)
+        register(data)
     }
 
     return (
