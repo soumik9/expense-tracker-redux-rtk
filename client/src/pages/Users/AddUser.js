@@ -26,6 +26,8 @@ const AddUser = ({ isOpen, setIsOpen }) => {
     useEffect(() => {
         if(getAPIData?.success === true){
             setIsOpen(false);
+            setSelected(roles[0]);
+            setData({ name: '', email: '', password: '', confirmPassword: '', role: roles[0] })
         }
     }, [getAPIData?.success, setIsOpen])
 

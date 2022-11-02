@@ -15,6 +15,7 @@ const signup = async (req, res) => {
         await user.save();
         res.send({ user, message: 'Successfully created user', success: true });
       } catch (error) {
+        console.log(error.message);
         res.status(500).send({ error: error.message, message: 'Server side error', success: false });
       }
 }
