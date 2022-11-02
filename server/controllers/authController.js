@@ -6,6 +6,11 @@ const signup = async (req, res) => {
         const findUser = await User.findOne({ email: req.body.email });
         if(findUser) return res.status(500).send({ message: 'Already exists', success: false });
 
+        // checking password length
+        if(req.body.password.length < 6) return res.status(500).send({ message: 'Minimum six password', success: false });
+        // checking is password matched
+        if(req.body.password !== req.body.confirmPassword) return res.status(500).send({ message: `Password didn't matched`, success: false });
+
         const user = new User(req.body);
         await user.save();
         res.send({ user, message: 'Successfully created user', success: true });

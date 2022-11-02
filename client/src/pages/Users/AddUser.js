@@ -4,7 +4,6 @@ import Modal from '../../components/Modal/Modal';
 import Select from '../../components/Select/Select';
 import { roles } from '../../configs/constant';
 import { useSignupMutation } from "../../features/auth/authApi"
-import { toast } from 'react-toastify';
 import Button from '../../components/Button/Button';
 
 
@@ -34,7 +33,7 @@ const AddUser = ({ isOpen, setIsOpen }) => {
     const handleAddUser = (e) => {
         e.preventDefault();
 
-        if(data.password !== data.confirmPassword) return toast.error('Password not matched');
+        // if(data.password !== data.confirmPassword) return toast.error('Password not matched');
 
         // redux reducer
         register(data, setIsOpen)
