@@ -1,6 +1,6 @@
 const User = require('../models/userSchema');
 const generateToken = require('../utils/generateToken');
-
+ 
 const signup = async (req, res) => {
     try {
         const findUser = await User.findOne({ email: req.body.email });

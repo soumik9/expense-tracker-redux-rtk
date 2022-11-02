@@ -15,8 +15,7 @@ export const authApi = apiSlice.injectEndpoints({
                     const result = await queryFulfilled;
                     toast.success(result.data.message);
                 } catch (error) {
-                    // do nothing
-                    console.log('Signup request failed');
+                    toast.error(error.error.data.message);
                 }
             }
         }),

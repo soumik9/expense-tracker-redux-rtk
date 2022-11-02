@@ -1,5 +1,4 @@
 import React from 'react';
-import CircleLoading from '../CircleLoading/CircleLoading';
 
 const Button = ({ text, loading, type, alignment, loadingText }) => {
     return (
@@ -8,7 +7,11 @@ const Button = ({ text, loading, type, alignment, loadingText }) => {
             type={type ? 'type' : 'submit'}
             disabled={loading}
         >
-           {loading ? <CircleLoading /> + loadingText : text}
+            {loading ? <div className='flex items-center gap-2'>
+                <span class="loader"></span>
+                <span className='text-white'>{loadingText}</span>
+            </div> :
+                text}
         </button>
     );
 };

@@ -17,7 +17,7 @@ const Select = ({ selected, setSelected, datas, label, divCss, id }) => {
                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                             <HiOutlineChevronUpDown
                                 className="h-5 w-5 text-gray-400 cursor-pointer"
-                                aria-hidden="true"
+                                aria-hidden={true}
                             />
                         </span>
                     </Listbox.Button>
@@ -41,7 +41,10 @@ const Select = ({ selected, setSelected, datas, label, divCss, id }) => {
                                             </span>
                                             {selected ? (
                                                 <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                                                    <BsCheck className="h-5 w-5 text-white" aria-hidden="true" />
+                                                    <BsCheck
+                                                        className="h-5 w-5 text-white"
+                                                        aria-hidden={true}
+                                                    />
                                                 </span>
                                             ) : null}
                                         </>

@@ -14,7 +14,9 @@ const AddUser = ({ isOpen, setIsOpen }) => {
     const [selected, setSelected] = useState(roles[0]);
     const [data, setData] = useState({ name: '', email: '', password: '', confirmPassword: '', role: selected.value });
 
-    const [register, {data: getAPIData, isLoading, isError}] = useSignupMutation();
+    // const [register, {data: getAPIData, isLoading, isError, error}] = useSignupMutation();
+    const [register, {data: getAPIData, isLoading}] = useSignupMutation();
+
 
     // setting role value to data
     useEffect(() => {
@@ -23,18 +25,19 @@ const AddUser = ({ isOpen, setIsOpen }) => {
     }, [selected])
 
     useEffect(() => {
-        console.log(getAPIData)
-        console.log(isError, 'error')
-        if(isError) return toast.error(isError);
-        // if(getAPIData.user) return toast.error(getAPIData.message);
-    }, [getAPIData, isError])
+        if(getAPIData?.success === true){
+            setIsOpen(false);
+        }
+    }, [getAPIData?.success, setIsOpen])
 
+    // function
     const handleAddUser = (e) => {
         e.preventDefault();
 
         if(data.password !== data.confirmPassword) return toast.error('Password not matched');
 
-        register(data)
+        // redux reducer
+        register(data, setIsOpen)
     }
 
     return (
