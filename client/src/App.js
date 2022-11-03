@@ -7,8 +7,15 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Users from './pages/Users/Users';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useAuthCheck from './hooks/useAuthCheck';
+import RequireAuth from './components/RequireAuth/RequireAuth';
 
 function App() {
+
+  const authChecked = useAuthCheck();
+
+  if(!authChecked) return <div className='text-center'>Checking authentication....</div>
+
   return (
     <>
       <ToastContainer
@@ -29,11 +36,11 @@ function App() {
         <Route path="/login" element={<Login />} />
 
 
-        <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route path="/dashboard" element={<RequireAuth><DashboardLayout /></RequireAuth>}>
           <Route index element={<Dashboard />} />
         </Route>
 
-        <Route path="/users" element={<DashboardLayout />}>
+        <Route path="/users" element={<RequireAuth><DashboardLayout /></RequireAuth>}>
           <Route index element={<Users />} />
         </Route>
 

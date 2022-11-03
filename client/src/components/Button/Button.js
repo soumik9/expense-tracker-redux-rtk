@@ -7,7 +7,7 @@ const Button = ({ text, loading, type, alignment, loadingText }) => {
             type={type ? 'type' : 'submit'}
             disabled={loading}
         >
-            {loading ? <div className='flex items-center gap-2'>
+            {loading ? <div className='flex items-center justify-center gap-2'>
                 <span className="loader"></span>
                 <span className='text-white'>{loadingText}</span>
             </div> :

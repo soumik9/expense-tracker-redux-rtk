@@ -12,6 +12,16 @@ body {
 }
 
 .loader {
+  width: 18px;
+  height: 18px;
+  border: 2px dotted #FFF;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 2s linear infinite;
+}
+/* .loader {
   width: 22px;
   height: 14px;
   border: 2px dotted #FFF;
@@ -20,7 +30,7 @@ body {
   position: relative;
   box-sizing: border-box;
   animation: rotation 2s linear infinite;
-}
+} */
 
 @keyframes rotation {
   0% {

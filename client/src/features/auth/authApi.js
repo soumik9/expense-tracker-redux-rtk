@@ -34,6 +34,17 @@ export const authApi = apiSlice.injectEndpoints({
                     toast.success(result.data.message);
 
                     // console.log('res', result.data.data.user);
+                    localStorage.setItem(
+                        "auth",
+                        JSON.stringify({
+                            accessToken: result.data.data.accessToken,
+                            user: result.data.data.user,
+                            // isAdmin: result.data.data.role === 'admin' ? true : false,
+                            // isTeacher: result.data.data.role === 'teacher' ? true : false,
+                            // isStudent: result.data.data.role === 'student' ? true : false,
+                            // isAuthenticated: true,
+                        })
+                    );
 
                     // setting logged data to redux state
                     dispatch(userLoggedIn({

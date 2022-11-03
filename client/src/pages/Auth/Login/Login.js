@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import ClassroomImage from '../../../assets/images/classroom.png';
 import Button from '../../../components/Button/Button';
@@ -9,12 +9,8 @@ const Login = () => {
     const [data, setData] = useState({ email: '', password: '' });
 
     // const [register, {data: getAPIData, isLoading, isError, error}] = useSignupMutation();
-    const [login, {data: getAPIData, isLoading}] = useLoginMutation();
+    const [login, {isLoading}] = useLoginMutation();
 
-
-    // useEffect(() => {
-    //     console.log(getAPIData)
-    // }, [getAPIData])
 
     // useEffect(() => {
     //     if(getAPIData?.success === true){
@@ -69,7 +65,7 @@ const Login = () => {
                             <div className="text-center pt-1 mb-12 pb-1">
                                 <Button
                                     text={'Login'}
-                                    alignment={'!py-[14px]'}
+                                    alignment={'!py-[14px] text-center'}
                                     loading={isLoading}
                                     loadingText={'Signing In'}
                                 />
