@@ -8,13 +8,15 @@ import Users from './pages/Users/Users';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAuthCheck from './hooks/useAuthCheck';
-import RequireAuth from './components/RequireAuth/RequireAuth';
+import Home from './pages/Home/Home';
+import PublicRoute from './components/Required/PublicRoute/PublicRoute';
+import RequireAuth from './components/Required/RequireAuth/RequireAuth';
 
 function App() {
 
   const authChecked = useAuthCheck();
 
-  if(!authChecked) return <div className='text-center'>Checking authentication....</div>
+  if (!authChecked) return <div className='text-center'>Checking authentication....</div>
 
   return (
     <>
@@ -33,9 +35,10 @@ function App() {
 
       <Routes>
 
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<PublicRoute> <Login /></PublicRoute>} />
 
-
+        {/* Private routes */}
         <Route path="/dashboard" element={<RequireAuth><DashboardLayout /></RequireAuth>}>
           <Route index element={<Dashboard />} />
         </Route>
