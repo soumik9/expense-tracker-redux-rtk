@@ -44,13 +44,13 @@ const Header = () => {
             <Link to='/' className='block text-sm leading-5 text-gray-700 hover:bg-gray-100 transition px-4 py-2'>Profile</Link>
             <div className="border-t border-gray-100"></div>
 
-            <buton
+            <button
               // type='button'
               onClick={handleLogout}
               className='block text-sm leading-5 text-gray-700 hover:bg-gray-100 transition px-4 py-2 cursor-pointer'
             >
               Logout
-            </buton>
+            </button>
 
           </div>
         </div>

@@ -39,10 +39,6 @@ export const authApi = apiSlice.injectEndpoints({
                         JSON.stringify({
                             accessToken: result.data.data.accessToken,
                             user: result.data.data.user,
-                            // isAdmin: result.data.data.role === 'admin' ? true : false,
-                            // isTeacher: result.data.data.role === 'teacher' ? true : false,
-                            // isStudent: result.data.data.role === 'student' ? true : false,
-                            // isAuthenticated: true,
                         })
                     );
 

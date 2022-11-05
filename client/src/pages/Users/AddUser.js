@@ -5,9 +5,12 @@ import Select from '../../components/Select/Select';
 import { roles } from '../../configs/constant';
 import { useSignupMutation } from "../../features/auth/authApi"
 import Button from '../../components/Button/Button';
+import { useGetUsersQuery } from '../../features/users/usersApi';
 
 
 const AddUser = ({ isOpen, setIsOpen }) => {
+
+    const { refetch } = useGetUsersQuery();
 
     // states
     const [selected, setSelected] = useState(roles[0]);
@@ -25,11 +28,12 @@ const AddUser = ({ isOpen, setIsOpen }) => {
 
     useEffect(() => {
         if(getAPIData?.success === true){
+            refetch();
             setIsOpen(false);
             setSelected(roles[0]);
             setData({ name: '', email: '', password: '', confirmPassword: '', role: roles[0] })
         }
-    }, [getAPIData?.success, setIsOpen])
+    }, [getAPIData?.success, setIsOpen, refetch])
 
     // function
     const handleAddUser = (e) => {

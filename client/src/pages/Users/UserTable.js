@@ -1,36 +1,34 @@
 import React from 'react';
 import DataTable from 'react-data-table-component';
+import { useGetUsersQuery } from '../../features/users/usersApi';
 
 const UserTable = () => {
 
+    // const dispatch = useDispatch();
+    // const { users } = useSelector((state) => state.users)
+    const {data: datas, isLoading, isError, isFetching} = useGetUsersQuery({ refetchOnFocus: true });
+ 
+
+
     const columns = [
         {
-            name: 'Title',
-            selector: row => row.title,
+            name: 'Name',
+            selector: row => row.name,
         },
         {
-            name: 'Year',
-            selector: row => row.year,
+            name: 'Email',
+            selector: row => row.email,
         },
     ];
 
-    const data = [
-        {
-            id: 1,
-            title: 'Beetlejuice',
-            year: '1988',
-        },
-        {
-            id: 2,
-            title: 'Ghostbusters',
-            year: '1984',
-        },
-    ]
+    if(isError) return <div>Server error</div>
     
     return (
         <DataTable
             columns={columns}
-            data={data}
+            data={datas?.datas}
+            progressPending={isLoading || isFetching}
+            pagination 
         />
     );
 };
