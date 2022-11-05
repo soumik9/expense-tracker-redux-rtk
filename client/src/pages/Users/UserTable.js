@@ -14,6 +14,8 @@ const UserTable = () => {
     const [modalData, setModalData] = useState(datas?.datas[0]);
     const [isEditOpen, setEditIsOpen] = useState(false);
 
+    console.log(datas);
+
     const columns = [
         {
             name: 'Name',

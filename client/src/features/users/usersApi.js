@@ -11,18 +11,26 @@ export const usersApi = apiSlice.injectEndpoints({
             providesTags: ['Users'],
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {
                 try {
-                    // const result = await queryFulfilled;
                     await queryFulfilled;
-
-                    // console.log('res', result);
-
-                    // dispatch(getAllUsers({
-                    //     users: result.data.data,
-                    // }));
-
-                    // toast.success(result.data.message);
                 } catch (error) {
-                    toast.error(error.error.data.error);
+                    toast.error(error.error.data.message);
+                }
+            }
+        }),
+
+        editUser: builder.mutation({
+            query: ({ id, data }) => ({
+                url: `user/${id}`,
+                method: 'PATCH',
+                body: data,
+              }),
+              invalidatesTags: ["Users"],
+            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                try {
+                    const result = await queryFulfilled;
+                    toast.success(result.data.message);
+                } catch (error) {
+                    toast.error(error.error.data.message);
                 }
             }
         }),
@@ -30,4 +38,4 @@ export const usersApi = apiSlice.injectEndpoints({
     })
 });
 
-export const { useGetUsersQuery } = usersApi;
+export const { useGetUsersQuery, useEditUserMutation } = usersApi;

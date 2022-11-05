@@ -4,15 +4,18 @@ import Modal from '../../components/Modal/Modal';
 import Select from '../../components/Select/Select';
 import { roles } from '../../configs/constant';
 import Button from '../../components/Button/Button';
+import { useEditUserMutation } from '../../features/users/usersApi';
 
 
 const EditUser = ({ isOpen, setIsOpen, prevData }) => {
+
+    const [editUser, {data: getAPIData, isLoading}] = useEditUserMutation();
 
     // states
     const [selected, setSelected] = useState(roles[0]);
     let [data, setData] = useState({ name: '', email: '' });
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [confirmPassword, setconfirmPassword] = useState('');
 
     // set default data
     useEffect(() => {
@@ -20,19 +23,19 @@ const EditUser = ({ isOpen, setIsOpen, prevData }) => {
         setSelected(roles?.find((item) => item.value === prevData?.role))
     }, [prevData])
 
-    // useEffect(() => {
-    //     if(getAPIData?.success === true){
-    //         setIsOpen(false);
-    //         setSelected(roles[0]);
-    //         setData({ name: '', email: '', password: '', confirmPassword: '', role: roles[0] })
-    //     }
-    // }, [getAPIData?.success, setIsOpen])
+    useEffect(() => {
+        if(getAPIData?.success === true){
+            setIsOpen(false);
+        }
+    }, [getAPIData?.success, setIsOpen])
 
     // function
     const handleEditUser = (e) => {
         e.preventDefault();
         data = { ...data, password: password, confirmPassword: confirmPassword, role: selected.value }
         console.log(data);
+
+        editUser({id: prevData?._id, data})
     }
 
     return (
@@ -73,7 +76,7 @@ const EditUser = ({ isOpen, setIsOpen, prevData }) => {
                         label={'Confrim Password'}
                         value={confirmPassword}
                         isRequired={password}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        onChange={(e) => setconfirmPassword(e.target.value)}
                     />
 
                     <Select
@@ -88,7 +91,7 @@ const EditUser = ({ isOpen, setIsOpen, prevData }) => {
                 <div className='flex justify-end mt-[15px] '>
                     <Button 
                         text={'Update'}
-                        // loading={isLoading}
+                        loading={isLoading}
                         loadingText={'Updating'}
                         alignment={'md:w-[130px] w-full'}
                     />
