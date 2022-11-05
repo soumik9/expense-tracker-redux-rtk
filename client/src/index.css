@@ -21,16 +21,6 @@ body {
   box-sizing: border-box;
   animation: rotation 2s linear infinite;
 }
-/* .loader {
-  width: 22px;
-  height: 14px;
-  border: 2px dotted #FFF;
-  border-radius: 50%;
-  display: inline-block;
-  position: relative;
-  box-sizing: border-box;
-  animation: rotation 2s linear infinite;
-} */
 
 @keyframes rotation {
   0% {
@@ -56,4 +46,27 @@ body {
 .scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: #95a5a6;
   cursor: pointer;
+}
+
+/* datatable */
+.gelpCx {
+  border-radius: 0px !important;
+}
+
+.rdt_TableHeadRow {
+  background-color: #263238 !important;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 10px !important;
+}
+
+.rdt_TableHeadRow .rdt_TableCol:hover {
+  color: #FFF !important;
+}
+
+.rdt_TableRow {
+  font-size: 16px !important;
+  padding-top: 18px !important;
+  padding-bottom: 18px !important;
 }

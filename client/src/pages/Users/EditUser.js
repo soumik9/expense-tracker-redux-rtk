@@ -3,48 +3,42 @@ import Input from '../../components/Input/Input';
 import Modal from '../../components/Modal/Modal';
 import Select from '../../components/Select/Select';
 import { roles } from '../../configs/constant';
-import { useSignupMutation } from "../../features/auth/authApi"
 import Button from '../../components/Button/Button';
 
 
-const AddUser = ({ isOpen, setIsOpen }) => {
+const EditUser = ({ isOpen, setIsOpen, prevData }) => {
 
     // states
     const [selected, setSelected] = useState(roles[0]);
-    const [data, setData] = useState({ name: '', email: '', password: '', confirmPassword: '', role: selected.value });
+    let [data, setData] = useState({ name: '', email: '' });
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
-    // const [register, {data: getAPIData, isLoading, isError, error}] = useSignupMutation();
-    const [register, {data: getAPIData, isLoading}] = useSignupMutation();
-
-
-    // setting role value to data
+    // set default data
     useEffect(() => {
-        setData({ ...data, role: selected.value });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selected])
+        setData({ name: prevData?.name, email: prevData?.email });
+        setSelected(roles?.find((item) => item.value === prevData?.role))
+    }, [prevData])
 
-    useEffect(() => {
-        if(getAPIData?.success === true){
-            setIsOpen(false);
-            setSelected(roles[0]);
-            setData({ name: '', email: '', password: '', confirmPassword: '', role: roles[0] })
-        }
-    }, [getAPIData?.success, setIsOpen])
+    // useEffect(() => {
+    //     if(getAPIData?.success === true){
+    //         setIsOpen(false);
+    //         setSelected(roles[0]);
+    //         setData({ name: '', email: '', password: '', confirmPassword: '', role: roles[0] })
+    //     }
+    // }, [getAPIData?.success, setIsOpen])
 
     // function
-    const handleAddUser = (e) => {
+    const handleEditUser = (e) => {
         e.preventDefault();
-
-        // if(data.password !== data.confirmPassword) return toast.error('Password not matched');
-
-        // redux reducer
-        register(data)
+        data = { ...data, password: password, confirmPassword: confirmPassword, role: selected.value }
+        console.log(data);
     }
 
     return (
-        <Modal isOpen={isOpen} setIsOpen={setIsOpen} modalTitle={'Add User'} className=''>
+        <Modal isOpen={isOpen} setIsOpen={setIsOpen} modalTitle={'Edit User'} className=''>
 
-            <form className='py-5 w-full' onSubmit={handleAddUser}>
+            <form className='py-5 w-full' onSubmit={handleEditUser}>
                 <div className="w-full grid lg:grid-cols-2 md:grid-cols-1 gap-x-9 gap-y-3">
 
                     <Input
@@ -61,6 +55,7 @@ const AddUser = ({ isOpen, setIsOpen }) => {
                         label={'Email'}
                         value={data?.email}
                         isRequired={true}
+                        isDisabled={true}
                         onChange={(e) => setData({ ...data, email: e.target.value })}
                     />
 
@@ -68,18 +63,17 @@ const AddUser = ({ isOpen, setIsOpen }) => {
                         id={'password'}
                         type={'password'}
                         label={'Password'}
-                        value={data?.password}
-                        isRequired={true}
-                        onChange={(e) => setData({ ...data, password: e.target.value })}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
 
                     <Input
                         id={'confirmPassword'}
                         type={'password'}
                         label={'Confrim Password'}
-                        value={data?.confirmPassword}
-                        isRequired={true}
-                        onChange={(e) => setData({ ...data, confirmPassword: e.target.value })}
+                        value={confirmPassword}
+                        isRequired={password}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                     />
 
                     <Select
@@ -93,9 +87,9 @@ const AddUser = ({ isOpen, setIsOpen }) => {
 
                 <div className='flex justify-end mt-[15px] '>
                     <Button 
-                        text={'Add User'}
-                        loading={isLoading}
-                        loadingText={'Adding'}
+                        text={'Update'}
+                        // loading={isLoading}
+                        loadingText={'Updating'}
                         alignment={'md:w-[130px] w-full'}
                     />
                 </div>
@@ -107,4 +101,4 @@ const AddUser = ({ isOpen, setIsOpen }) => {
     );
 };
 
-export default AddUser;
+export default EditUser;
