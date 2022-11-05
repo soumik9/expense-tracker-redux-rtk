@@ -6,9 +6,9 @@ export const usersApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         // all users endpoint here
         getUsers: builder.query({
-            query: () => ({
-                url: 'users',
-            }),
+            query: () => 'users',
+            keepUnusedDataFor: 600,
+            providesTags: ['Users'],
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {
                 try {
                     // const result = await queryFulfilled;
