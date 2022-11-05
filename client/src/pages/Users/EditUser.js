@@ -6,7 +6,6 @@ import { roles } from '../../configs/constant';
 import Button from '../../components/Button/Button';
 import { useEditUserMutation } from '../../features/users/usersApi';
 
-
 const EditUser = ({ isOpen, setIsOpen, prevData }) => {
 
     const [editUser, {data: getAPIData, isLoading}] = useEditUserMutation();
@@ -26,6 +25,10 @@ const EditUser = ({ isOpen, setIsOpen, prevData }) => {
     useEffect(() => {
         if(getAPIData?.success === true){
             setIsOpen(false);
+            setPassword('');
+            setconfirmPassword('');
+            setData({ name: '', email: '' });
+            setSelected(roles[0])
         }
     }, [getAPIData?.success, setIsOpen])
 
@@ -67,6 +70,7 @@ const EditUser = ({ isOpen, setIsOpen, prevData }) => {
                         type={'password'}
                         label={'Password'}
                         value={password}
+                        placeholder={'Enter new password'}
                         onChange={(e) => setPassword(e.target.value)}
                     />
 
@@ -76,6 +80,7 @@ const EditUser = ({ isOpen, setIsOpen, prevData }) => {
                         label={'Confrim Password'}
                         value={confirmPassword}
                         isRequired={password}
+                        placeholder={'Enter new confirm password'}
                         onChange={(e) => setconfirmPassword(e.target.value)}
                     />
 
